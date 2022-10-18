@@ -52,6 +52,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('add',[CategoryController::class,'add']);
         Route::post('save',[CategoryController::class,'store']);
         Route::get('delete/{id}',[CategoryController::class,'delete']);
+        Route::get('edit/{id}',[CategoryController::class,'edit']);
+        Route::post('update',[CategoryController::class,'update']);
 
     });
     // Route::group(['prefix'=>'product'],function(){

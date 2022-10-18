@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Database\Eloquent\ModelNotFoundException;
+@endphp
 @extends('backend.template')
 
 @section('css')
@@ -61,17 +64,16 @@
                                                 <td>{{ $category->name }}</td>
                                                 <td>{{ $category->slug }}</td>
                                                 <td>
-                                                    {{-- {{ App\Models\Category::findOrFail($category->parent) }} --}}
+
                                                     @php
-                                                        // $data = App\Models\Category::findOrFail($category->parent);
-                                                        $data = App\Models\Category::where('id',$category->parent)->get();
-                                                        dd($data);
+                                                        try {
+                                                            $data = App\Models\Category::findOrFail($category->parent);
+                                                            echo $data->name;
+                                                        } catch (ModelNotFoundException $e) {
+                                                            echo "No parent";
+                                                        }
                                                     @endphp
-                                                    @if ($data)
-                                                        {{ $data->name }}
-                                                    @else
-                                                        {{ None }}
-                                                    @endif
+                                                   
                                                 </td>
                                                 <td>
                                                     @if ($category->status == 0)
@@ -84,7 +86,7 @@
                                                     <a onclick="return confirm('Want to delete?');"
                                                         href="/admin/category/delete/{{ $category->id }}" class="mr-1"><i
                                                             class="fa fa-trash"></i></a>
-                                                    <a href="" class="mr-1"><i class="fa fa-pen"></i></a>
+                                                    <a href="/admin/category/edit/{{ $category->id }}" class="mr-1"><i class="fa fa-pen"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

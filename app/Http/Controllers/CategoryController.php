@@ -52,4 +52,27 @@ class CategoryController extends Controller
             return redirect('/admin/category/list');
         }
     }
+
+    public function edit($id){
+        return view('backend/category/edit',[
+            'category' => Category::find($id),
+            'categories' => $this->categories
+        ]);        
+    }
+
+    public function update(Request $request)
+    {
+        $data = $request->input();
+
+        $category = Category::find($data['id']);
+
+        $category->name = $data['name'];
+        $category->slug = Str::of($data['name'])->slug('-');
+        $category->parent = $data['parent'];
+        $category->description = $data['description'];
+        $category->image = $data['image'];
+        $category->save();
+        
+        return redirect('/admin/category/list');
+    }
 }
