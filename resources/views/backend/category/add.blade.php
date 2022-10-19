@@ -6,8 +6,10 @@
 
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
 
-    {{-- CKEditor CDN --}}
-    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script> --}}
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('admin_assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -44,11 +46,21 @@
                             <div class="card-header">
                                 <h3 class="card-title">Add Category</h3>
                             </div>
+
+                            @if ($errors->any())
+                                <div class="callout callout-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <p class="text-danger">{{ $error }}</p>
+                                    @endforeach
+                                </div>
+                            @endif
+
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form method="post" action="/admin/category/save">
                                 @csrf
                                 <div class="card-body">
+
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">name</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" name="name"
@@ -57,19 +69,21 @@
 
                                     <div class="form-group">
                                         <label>Parent</label>
-                                        <select class="form-control" name="parent">
-                                            <option value="0">No parent</option>
+                                        <select class="form-control select2" style="width: 100%;" name="parent" >
+                                            <option selected="selected" value="0">No parent</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
                                     <div class="form-group">
                                         <label>Image</label>
                                         <div class="input-group input-group-sm">
                                             <input type="text" class="form-control" id="image" name="image">
                                             <span class="input-group-append">
-                                                <button type="button" class="btn btn-info btn-flat" id="open_ckfinder">Choise</button>
+                                                <button type="button" class="btn btn-info btn-flat"
+                                                    id="open_ckfinder">Choise</button>
                                             </span>
                                         </div>
                                     </div>
@@ -105,7 +119,8 @@
 @section('script')
     <!-- jQuery -->
     <script src="{{ asset('admin_assets/plugins/jquery/jquery.min.js') }}"></script>
-
+    <!-- Select2 -->
+    <script src="{{ asset('admin_assets/plugins/select2/js/select2.full.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('admin_assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- bs-custom-file-input -->
@@ -118,6 +133,7 @@
     <script>
         $(function() {
             bsCustomFileInput.init();
+            $('.select2').select2();
         });
     </script>
 

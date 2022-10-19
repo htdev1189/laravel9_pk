@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,16 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('delete/{id}',[CategoryController::class,'delete']);
         Route::get('edit/{id}',[CategoryController::class,'edit']);
         Route::post('update',[CategoryController::class,'update']);
+
+    });
+
+    Route::group(['prefix'=>'posts'],function(){
+        Route::get('list',[PostController::class,'getAllCat']);
+        Route::get('add',[PostController::class,'add']);
+        Route::post('save',[PostController::class,'store']);
+        Route::get('delete/{id}',[PostController::class,'delete']);
+        Route::get('edit/{id}',[PostController::class,'edit']);
+        Route::post('update',[PostController::class,'update']);
 
     });
     // Route::group(['prefix'=>'product'],function(){

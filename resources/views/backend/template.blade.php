@@ -17,7 +17,7 @@
   </div>
 
   <!-- Navbar -->
-  {{-- @include('backend.inc.nav') --}}
+  @include('backend.inc.nav')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->

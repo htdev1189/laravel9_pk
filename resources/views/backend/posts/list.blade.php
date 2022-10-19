@@ -23,15 +23,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Categories</h1>
+                        <h1 class="m-0">Posts</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
-                        <a href="/admin/category/add" class="btn btn-success float-right ">Add Category</a>
-                        {{-- <input type="submit" value="Create new Project" class="btn btn-success float-right"> --}}
-                        {{-- <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol> --}}
+                        <a href="/admin/posts/add" class="btn btn-success float-right ">Add Post</a>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -50,8 +45,8 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Slug</th>
-                                            <th>Parent</th>
+                                            <th>Image</th>
+                                            <th>Category</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -59,24 +54,15 @@
                                     <tbody>
 
 
-                                        @foreach ($categories as $category)
+                                        @foreach ($posts as $post)
                                             <tr>
-                                                <td>{{ $category->name }}</td>
-                                                <td>{{ $category->slug }}</td>
+                                                <td>{{ $post->title }}</td>
+                                                <td><img width="100" src="{{ $post->image }}"></td>
                                                 <td>
-
-                                                    @php
-                                                        try {
-                                                            $data = App\Models\Category::findOrFail($category->parent);
-                                                            echo $data->name;
-                                                        } catch (ModelNotFoundException $e) {
-                                                            echo "No parent";
-                                                        }
-                                                    @endphp
-                                                   
+                                                    {{ App\Models\Post::find($post->id)->getCategory->name }}
                                                 </td>
                                                 <td>
-                                                    @if ($category->status == 0)
+                                                    @if ($post->status == 0)
                                                         <span class="catagory-disable">disabled</span>
                                                     @else
                                                         <span class="catagory-active">actived</span>
@@ -84,9 +70,10 @@
                                                 </td>
                                                 <td>
                                                     <a onclick="return confirm('Want to delete?');"
-                                                        href="/admin/category/delete/{{ $category->id }}" class="mr-1"><i
+                                                        href="/admin/posts/delete/{{ $post->id }}" class="mr-1"><i
                                                             class="fa fa-trash"></i></a>
-                                                    <a href="/admin/category/edit/{{ $category->id }}" class="mr-1"><i class="fa fa-pen"></i></a>
+                                                    <a href="/admin/posts/edit/{{ $post->id }}" class="mr-1"><i
+                                                            class="fa fa-pen"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -141,12 +128,12 @@
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
-                // "lengthChange": false,
-                // //   "searching": false,
-                // "ordering": true,
-                // "info": true,
-                // "autoWidth": false,
-                // "responsive": true,
+                "lengthChange": false,
+                //   "searching": false,
+                "ordering": false,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
             });
         });
     </script>
