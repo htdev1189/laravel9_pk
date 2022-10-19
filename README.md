@@ -125,3 +125,9 @@ $request->validate([
 ```
 http://preview.themeforest.net/item/medicare-medical-health-theme/full_screen_preview/14444927?_ga=2.122418063.583191128.1666164878-369493133.1666164878
 ```
+
+> sua loi baseUrl ckfinder
+```
+- vi warmserver đã tạo ra laravel.htdev từ thu mục public nên ko cần public trong baseUrl nữa
+    'baseUrl'      => 'http://laravel.htdev/upload/',
+```

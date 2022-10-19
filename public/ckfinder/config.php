@@ -69,7 +69,8 @@ $config['images'] = array(
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => 'http://laravel.htdev/public/upload/',
+    // vi warmserver đã tạo ra laravel.htdev từ thu mục public nên ko cần public trong baseUrl nữa http://laravel.htdev/public/upload/
+    'baseUrl'      => 'http://laravel.htdev/upload/',
 //  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
