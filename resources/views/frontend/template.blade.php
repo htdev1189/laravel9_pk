@@ -138,6 +138,34 @@
 
 
     <!-- passion -->
+
+    <div id="passion" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-9 passion-right">
+                    <div class="hkt-style-1">
+                        introducing our team
+                    </div>
+                    <div class="hkt-style-2">
+                        <p><b>Great passion</b><br>for healing</p>
+                    </div>
+                    <p>
+                        Some up and coming trends are healthcare consolidation for independent healthcare centers that see a cut in unforeseen payouts. High deductible health plans are also expected to transpire along with a growth of independent practices.
+                    </p>
+                    <div class="passion-sign d-flex justify-content-end align-items-center">
+                        <div class="passion-sign-left">
+                            <b>chase franklin</b><br>
+                            <span>Fonder & CEO</span>
+                        </div>
+                        <div class="passion-sign-img ml-2">
+                            <img src="{{ asset('frontend_assets/image/sign.png') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">

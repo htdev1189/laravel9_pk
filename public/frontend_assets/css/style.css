@@ -131,3 +131,49 @@ div#gioithieu .btn-hkt {
 div#gioithieu .card {
     height: 100%;
 }
+.hkt-style-1 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.hkt-style-1:after {
+    content: "";
+    height: 2px;
+    background: var(--colorBg);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100px;
+}
+
+.hkt-style-2 p {
+    font-size: 2.2rem;
+    color: var(--colorText);
+    text-transform: capitalize;
+}
+
+.hkt-style-2 b {
+    color: var(--colorBg);
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+.passion-right > p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--colorText);
+    margin-bottom: 1rem;
+}
+.passion-sign-left b {
+    color: var(--colorBg);
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.passion-sign-left span {
+    font-size: .9rem;
+    color: var(--colorText);
+}
