@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+// backend
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+
+// frontend
+use App\Http\Controllers\frontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +20,13 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// frontend
 
-
+Route::get('/',[frontendController::class,'home']);
 
 
 
 //admin
-// group
 Route::group(['prefix'=>'admin'],function(){
 
     // dashboard

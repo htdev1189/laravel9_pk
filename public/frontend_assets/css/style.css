@@ -1,0 +1,133 @@
+:root {
+    --colorBg: #e10f28;
+    --colorText: #444;
+  }
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+ul,li{
+    list-style: none;
+}
+
+.header-social i {
+    color: var(--colorBg);
+    font-size: 14px;
+}
+
+.header-social a {
+    margin: 0 0 0 0.4em;
+    line-height: 20px;
+}
+.header-ul > li > a {
+    color: var(--colorText);
+    display: block;
+    line-height: 50px;
+}
+
+.header-ul > li {
+    margin: 0 30px 0 0;
+}
+
+.header-ul {
+    margin: 0 0 0 50px;
+}
+
+div#banner {
+    background: url("/frontend_assets/image/bg-slider-01.jpg");
+    background-size: cover;
+}
+
+.banner1 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.banner1:after {
+    content: "";
+    height: 2px;
+    background: var(--colorBg);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100px;
+}
+
+
+.banner2 span {
+    font-size: 2rem;
+}
+
+.banner2 b {
+    color: var(--colorBg);
+    text-transform: uppercase;
+}
+
+.banner2 p {
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.btn-hkt {
+    display: inline-block;
+    padding: .5rem 1.5rem;
+    border: 1px solid;
+    border-radius: 3rem;
+    background: var(--colorBg);
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: .5rem;
+}
+
+.style1 {
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 5px;
+    margin-bottom: 1rem;
+    display: block;
+    font-size: .8rem;
+}
+
+.style1:after {
+    content: "";
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 50px;
+}
+
+.hkt-bg-1 {
+    background: rgba(235, 29, 53, 1);
+    color: white;
+}
+.hkt-bg-2 {
+    background: rgba(225, 15, 40, 1);
+    color: white;
+}
+.hkt-bg-3 {
+    background: rgba(209, 11, 34, 1);
+    color: white;
+}
+.hkt-bg-4 {
+    background: rgba(40, 40, 40, 1);
+    color: white;
+}
+div#gioithieu .card-text {
+    font-size: .8rem;
+}
+div#gioithieu .btn-hkt {
+    background: white;
+    border: none;
+    color: var(--colorText);
+    font-weight: bold;
+    font-size: .7rem;
+}
+div#gioithieu .card {
+    height: 100%;
+}

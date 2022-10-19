@@ -120,3 +120,8 @@ $request->validate([
 ```
 'timezone' => 'Asia/Ho_Chi_Minh',
 ```
+
+> theme frontend
+```
+http://preview.themeforest.net/item/medicare-medical-health-theme/full_screen_preview/14444927?_ga=2.122418063.583191128.1666164878-369493133.1666164878
+```
