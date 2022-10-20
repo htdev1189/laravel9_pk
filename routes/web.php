@@ -23,6 +23,9 @@ use App\Http\Controllers\frontendController;
 // frontend
 
 Route::get('/',[frontendController::class,'home']);
+Route::get('/{slug}.html',[frontendController::class,'post']);
+Route::get('/{slug}',[frontendController::class,'category']);
+
 
 
 

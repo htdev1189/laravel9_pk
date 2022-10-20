@@ -2,6 +2,7 @@
     --colorBg: #e10f28;
     --colorText: #444;
   }
+  img{max-width: 100%;}
 *{
     padding: 0;
     margin: 0;
@@ -9,6 +10,9 @@
 }
 ul,li{
     list-style: none;
+}
+body{
+    color: var(--colorText);
 }
 
 .header-social i {
@@ -88,7 +92,7 @@ div#banner {
     position: relative;
     padding-bottom: 5px;
     margin-bottom: 1rem;
-    display: block;
+    display: inline-block;
     font-size: .8rem;
 }
 
@@ -176,4 +180,311 @@ div#gioithieu .card {
 .passion-sign-left span {
     font-size: .9rem;
     color: var(--colorText);
+}
+.passion-main span {font-size: .9rem;}
+
+.passion-main p {
+    font-size: .9rem;
+}
+div#passion {
+    background: url(/frontend_assets/image/bg-1.jpg);
+    background-size: cover;
+}
+
+#team .style1:after{
+    background: var(--colorBg);
+    left: 50%;
+    transform: translateX(-50%);
+}
+#team .card-body {
+    background: #f1f1f1;
+    position: relative;
+    padding-top: 70px;
+}
+
+#team .btn-hkt {
+    background: white;
+    color: var(--colorText);
+    font-weight: bold;
+    border: none;
+}
+.team-abs {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: var(--colorBg);
+    border-radius: 50%;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.lienhe {
+    border: #f1f1f1 10px solid;
+}
+.lienhe .hkt-style-1 {
+    font-size: 1rem;
+}
+
+.lienhe .hkt-style-2 b {
+    font-size: 1.7rem;
+}
+
+.lienhe .hkt-style-2 p {
+    font-size: 1.7rem;
+}
+
+div#baiviet .card-body {
+    background: #f1f1f1;
+    position: relative;
+    padding-top: 25px;
+}
+
+.baiviet-top span i {
+    color: var(--colorBg);
+    font-size: 1rem;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.baiviet-top span {
+    text-transform: capitalize;
+    margin-right: .5rem;
+    margin-left: .5rem;
+}
+
+.baiviet-top span:first-child {
+    margin-left: 0;
+}
+
+.baiviet-top span:last-child {
+    margin-right: 0;
+}
+div#baiviet .card-title a {
+    font-size: 1.5rem;
+    color: var(--colorText);
+    font-weight: bold;
+}
+.baiviet-abs {
+    display: inline-flex;
+    width: 50px;
+    height: 50px;
+    background: var(--colorBg);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -25px;
+}
+
+.baiviet-abs i {
+    color: white;
+}
+
+div#guisdt {
+    background: url(/frontend_assets/image/bg-2.jpg);
+    background-size: cover;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+footer {
+    background: rebeccapurple;
+    color: white;
+}
+
+li.footer-flex {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+li.footer-flex > a {
+    flex: 0 0 30%;
+}
+
+.hkt-style-3 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.hkt-style-3:after {
+    content: "";
+    height: 3px;
+    background: #0cb8b6;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 60px;
+}
+li.footer-flex div {
+    padding: 0 1rem;
+}
+
+li.footer-flex div a {
+    display: block;
+    /* font-size: 1.2rem; */
+}
+
+li.footer-flex div span {
+    font-size: .8rem;
+}
+div#category-banner {
+    background: url(/frontend_assets/image/bg-header-cat.jpg);
+    background-size: cover;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    position: relative;
+}
+
+div#category-banner:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    background: rgb(255 255 255 / 70%);
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+div#category-banner .row {
+    position: relative;
+    z-index: 10;
+}
+
+.hkt-style-4 {
+    font-weight: bold;
+    font-size: 4rem;
+    color: #000;
+    position: relative;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+}
+
+.hkt-style-4:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: var(--colorBg);
+    width: 50px;
+    height: 2px;
+}
+
+div#category-banner p {
+    font-size: 1.2rem;
+}
+.category-item-info {
+    position: relative;
+    padding-bottom: .5rem;
+}
+
+.category-item-info:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100px;
+    background: var(--colorText);
+    left: 0;
+    top: 100%;
+}
+.category-item .card-title a {
+    color: var(--colorBg);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.hkt-card-img {
+    position: relative;
+}
+
+.category-img-abs {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    background: rgb(0 0 0 / 40%);
+    align-items: center;
+}
+
+.category-img-abs p {
+    margin-bottom: 0;
+}
+
+.category-img-abs img {
+    flex: 0 0 30px;
+    max-width: 60px;
+}
+
+.category-img-abs p {
+    margin-left: 10px;
+    color: white;
+}
+
+.category-img-abs p span:first-child {
+    color: var(--colorBg);
+}
+
+.hkt-card-img2 span {
+    font-size: .6rem;
+}
+
+.hkt-card-img2 span:first-child {
+    color: var(--colorBg);
+    font-size: .8rem;
+}
+
+.category-recent-post-item {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.category-recent-post-item>a {
+    flex: 0 0 30%;
+    margin-right: 15px;
+}
+
+.category-recent-post-item span {
+    display: block;
+    color: var(--colorText);
+    font-size: .8rem;
+}
+
+.category-recent-post-item div a {
+    display: block;
+    color: var(--colorBg);
+}
+div#post-main h1 {
+    color: var(--colorBg);
+}
+
+/* menu tam */
+
+li.parent-menu {
+    position: relative;
+}
+
+ul.submenu {
+    position: absolute;
+    z-index: 100;
+    background: var(--colorBg);
+    width: 150px;
+    display: none;
+}
+
+ul.submenu>li>a {
+    display: block;
+    padding: 8px 15px;
+    color: white;
+    font-size: .8rem;
+    text-transform: capitalize;
+}
+
+li.parent-menu:hover .submenu {
+    display: block;
 }

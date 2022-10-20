@@ -49,6 +49,7 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th>ID</th>
                                             <th>Title</th>
                                             <th>Slug</th>
                                             <th>Parent</th>
@@ -61,6 +62,7 @@
 
                                         @foreach ($categories as $category)
                                             <tr>
+                                                <td>{{ $category->id }}</td>
                                                 <td>{{ $category->name }}</td>
                                                 <td>{{ $category->slug }}</td>
                                                 <td>
