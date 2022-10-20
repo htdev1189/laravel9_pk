@@ -17,10 +17,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="hkt-style-4">blog</div>
-                    <p>Credibly reintermediate backend ideas for cross-platform models. Continually reintermediate
-                        integrated
-                        processes through technically sound intellectual capital.</p>
+                    <div class="hkt-style-4">{{$category->name}}</div>
+                    <p>{!! $category->description !!}</p>
                 </div>
             </div>
         </div>

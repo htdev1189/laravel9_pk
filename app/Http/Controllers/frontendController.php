@@ -15,9 +15,13 @@ class frontendController extends Controller
     }
     public function category($slug)
     {
-        
+        $category = Category::where('slug',$slug)->first();
+        if (!$category) {
+            abort(404);
+        }
         return view('frontend.pages.cat',[
-            'categories' => Category::where('parent',0)->orderByDesc('id')->get()
+            'categories' => Category::where('parent',0)->orderByDesc('id')->get(),
+            'category' => $category
         ]);
     }
     public function post($slug)
