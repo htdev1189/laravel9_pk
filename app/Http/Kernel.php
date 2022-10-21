@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'kiemtraLoginGuard' => \App\Http\Middleware\kiemtraLoginGuard::class,
+        'phanquyenUser' => \App\Http\Middleware\phanquyenUser::class,
     ];
 }

@@ -42,14 +42,15 @@ Route::post('/admin/xulyLogin', [AdminController::class,'xulyLogin']);
 
 //admin
 // Route::group(['prefix' => 'admin', 'middleware' => 'kiemtraLoginGuard'], function () {
-Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function(){
+Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function () {
     // dashboard
     Route::get('dashboard', function () {
         return view('backend/content');
     });
 
     // user
-    Route::group(['prefix' => 'user'], function () {
+    // Route::group(['prefix' => 'user'], function () {
+    Route::middleware('phanquyenUser:1')->prefix('user')->group(function () {
         Route::get('list', [AdminController::class, 'getAll']);
         Route::get('add', [AdminController::class, 'add']);
         Route::post('save', [AdminController::class, 'store']);
@@ -58,7 +59,8 @@ Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function(){
         Route::post('update', [AdminController::class, 'update']);
     });
 
-    Route::group(['prefix' => 'category'], function () {
+    // Route::group(['prefix' => 'category'], function () {
+    Route::middleware('phanquyenUser:1')->prefix('category')->group(function () {
         Route::get('list', [CategoryController::class, 'getAllCat']);
         Route::get('add', [CategoryController::class, 'add']);
         Route::post('save', [CategoryController::class, 'store']);
@@ -67,7 +69,8 @@ Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function(){
         Route::post('update', [CategoryController::class, 'update']);
     });
 
-    Route::group(['prefix' => 'posts'], function () {
+    // Route::group(['prefix' => 'posts'], function () {
+    Route::middleware('phanquyenUser:2')->prefix('posts')->group(function () {
         Route::get('list', [PostController::class, 'getAllCat']);
         Route::get('add', [PostController::class, 'add']);
         Route::post('save', [PostController::class, 'store']);
@@ -76,7 +79,8 @@ Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function(){
         Route::post('update', [PostController::class, 'update']);
     });
 
-    Route::group(['prefix' => 'tongdai'], function () {
+    // Route::group(['prefix' => 'tongdai'], function () {
+    Route::middleware('phanquyenUser:3')->prefix('tongdai')->group(function () {
         Route::get('list', [SdtController::class, 'getAll']);
     });
 });

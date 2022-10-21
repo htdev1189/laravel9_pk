@@ -263,5 +263,33 @@ class kiemtraLoginGuard
         return redirect('/admin/login');
     }
 
+
+- Xu ly phan quyen user theo roles (middleware)
+
+    php artisan make:middleware phanquyenUser
+
+    - them vao krenel
+    protected $routeMiddleware = [
+        'phanquyenUser' => \App\Http\Middleware\phanquyenUser::class,
+    ];
+
+- Quan trong
+    public function handle(Request $request, Closure $next, ...$roles)
+    {
+        dd($roles) -> no se in ra 1 mang
+
+        Sau do dua vao $request de tien hanh sang loc user nay co quyen han vao day khong
+
+        return $next($request);
+    }
+
+    Roles la 1 mang, bang cach goi middleware theo cach sau
+    Route::middleware('phanquyenUser:1,2')
+
+- Vi du
+    group quan ly category thiet lap MiddleWare('phanquyenUser:1')
+    Vi vay khi login bang tai khoan bientap (co idGroup = 2)
+    Vi in_array(2,[1]) -> false
+    Nen no khong the vao day duoc -- done
     
 ```
