@@ -234,6 +234,13 @@ class kiemtraLoginGuard
         if (Auth::guard('admin')->attempt($credentials)) {
             //thiet lap session
             $request->session()->regenerate();
+
+            //info user current
+            $current_user = Auth::guard('admin')->user();
+            //put to session
+            $request->session()->put('current_user',$current_user);
+
+            
             return redirect('/admin/dashboard');
             //dd("thanh cong");
             // $user = Auth::guard('admin')->user();

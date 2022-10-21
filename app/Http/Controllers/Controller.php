@@ -16,6 +16,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $UserLogged = Auth::guard('admin')->user();
+        
     }
 }

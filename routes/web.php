@@ -41,7 +41,8 @@ Route::post('/admin/xulyLogin', [AdminController::class,'xulyLogin']);
 
 
 //admin
-Route::group(['prefix' => 'admin', 'middleware' => 'kiemtraLoginGuard'], function () {
+// Route::group(['prefix' => 'admin', 'middleware' => 'kiemtraLoginGuard'], function () {
+Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function(){
     // dashboard
     Route::get('dashboard', function () {
         return view('backend/content');
