@@ -168,3 +168,93 @@ http://preview.themeforest.net/item/medicare-medical-health-theme/full_screen_pr
     //add this to boot funtion
     Paginator::useBootstrapFive();
 ```
+
+# Lam viec voi middleware
+
+```
+- tao midlleware de kiemtr a login truoc khi truy cap route (unikey bi loi)
+    php artisan make:middleware kiemtraLoginGuard
+
+- Khai bao them o file Kernel.php
+    protected $routeMiddleware = [
+        'kiemtraLoginGuard' => \App\Http\Middleware\kiemtraLoginGuard::class,
+    ]
+
+- CHinh sau file config\Auth.php (vi cai nay minh ko dungt oi table users cua he thong)
+
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+    ],
+
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ]
+    ],
+
+
+- Kiem tra xem da co thongt in dang nhap bang Guard admin chua
+class kiemtraLoginGuard
+{
+    public function handle(Request $request, Closure $next)
+    {
+        // cai nay xu ly neu dung guard
+        if(!Auth::guard('admin')->check())
+
+        //cai nay la mac dinh dung theo table users
+        // if (!Auth ::check())
+        {
+            return redirect('/admin/login');
+        }
+        return $next($request);
+    }
+}
+
+
+- Xu ly ham check login
+
+        $credentials = $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            //thiet lap session
+            $request->session()->regenerate();
+            return redirect('/admin/dashboard');
+            //dd("thanh cong");
+            // $user = Auth::guard('admin')->user();
+            // dd($user);
+        } else {
+            return back();
+        }
+
+- Them dong nay neu nhu bi loi vao Model Admin
+    use Illuminate\Foundation\Auth\User as Authenticatable;
+    class Admin extends Authenticatable
+
+
+- Logout
+
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        return redirect('/admin/login');
+    }
+
+    
+```

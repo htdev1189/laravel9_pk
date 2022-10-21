@@ -23,6 +23,7 @@ class PostController extends Controller
 
     function __construct()
     {
+        parent::__construct();
         $this->categories = Category::all();
         $this->posts = Post::all();
     }

@@ -8,7 +8,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+                <a href="#" class="d-block">{{ $UserLogged->name }}</a>
             </div>
         </div>
 
@@ -42,6 +42,15 @@
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Phone number
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/admin/user/list" class="nav-link">
+                        <i class="nav-icon far fa-image"></i>
+                        <p>
+                            Admin
                         </p>
                     </a>
                 </li>

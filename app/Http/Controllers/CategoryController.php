@@ -23,6 +23,7 @@ class CategoryController extends Controller
 
     function __construct()
     {
+        parent::__construct();
         // $this->categories = Category::all();
         $this->categories = Category::orderByDesc('id')->get();
     }

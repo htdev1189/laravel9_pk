@@ -11,6 +11,7 @@ class SdtController extends Controller
     protected $numbers;
     public function __construct()
     {
+        parent::__construct();
         $this->numbers = TongDai::all();
     }
     public function getAll()
