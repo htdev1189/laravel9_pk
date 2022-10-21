@@ -11,7 +11,10 @@ class frontendController extends Controller
 {
     public function home()
     {
-        return view('frontend.pages.home');
+        return view('frontend.pages.home',[
+            'news_posts' => Post::limit(3)->get(),
+            'categories' => Category::where('parent',0)->orderByDesc('id')->get()
+        ]);
     }
     public function category($slug)
     {
@@ -20,8 +23,10 @@ class frontendController extends Controller
             abort(404);
         }
         return view('frontend.pages.cat',[
+            'recent_posts' => Post::limit(3)->get(),
             'categories' => Category::where('parent',0)->orderByDesc('id')->get(),
-            'category' => $category
+            'category' => $category,
+            'posts' => Category::find($category->id)->getPosts
         ]);
     }
     public function post($slug)
@@ -31,7 +36,9 @@ class frontendController extends Controller
             abort(404);
         }
         return view('frontend.pages.post',[
+            'recent_posts' => Post::Where('id','<>',$post->id)->limit(3)->get(),
             'categories' => Category::where('parent',0)->orderByDesc('id')->get(),
+            'parent' => Post::find($post->id)->getCategory,
             'post' =>$post
         ]);
     }

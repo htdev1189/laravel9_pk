@@ -114,6 +114,13 @@ $request->validate([
     }
     // goi ra
     {{ App\Models\Post::find($post->id)->getCategory->name }}
+
+1 Quan he 1 - Nhieu (Cat -> Post)
+    public function getPosts()
+    {
+        return $this->hasMany(Post::class,'category','id');
+        //hasMany('table','khoa ngoai tai table huong toi','khoa chinh')
+    }
 ```
 
 > config app.php (update time)
@@ -130,4 +137,18 @@ http://preview.themeforest.net/item/medicare-medical-health-theme/full_screen_pr
 ```
 - vi warmserver đã tạo ra laravel.htdev từ thu mục public nên ko cần public trong baseUrl nữa
     'baseUrl'      => 'http://laravel.htdev/upload/',
+```
+
+> Mot so luu y voi Model
+```
+- Xu ly route(Dua .html len tren)
+    Route::get('/{slug}.html',[frontendController::class,'post']);
+    Route::get('/{slug}',[frontendController::class,'category']);
+
+- Xu ly link cua NAV
+    luon luon goi ve trang chu
+        {{ URL::to('/') }}
+
+- Xu ly content (Khong co HTML)
+    {!! $new->content !!}
 ```

@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="hkt-style-4">{{$category->name}}</div>
+                    <div class="hkt-style-4">{{ $category->name }}</div>
                     <p>{!! $category->description !!}</p>
                 </div>
             </div>
@@ -30,70 +30,80 @@
             <div class="row">
                 {{-- ben trai --}}
                 <div class="col-md-9">
-                    <div class="category-list">
-                        @for ($i = 0; $i < 3; $i++)
-                            <div class="category-item mb-5">
-                                <div class="row flex-sm-row-reverse">
-                                    <div class="col-sm-10">
-                                        <div class="card">
-                                            <div class="hkt-card-img">
-                                                <img src="{{ asset('frontend_assets/image/img-blog-post-02-1200x800.jpg') }}"
-                                                    class="card-img-top" alt="...">
-                                                {{-- car abs --}}
-                                                <div class="category-img-abs d-flex d-sm-none">
-                                                    <img src="{{ asset('frontend_assets/image/tacgia.jpeg') }}">
-                                                    <p>
-                                                        <span><i class="fa fa-clock-o" aria-hidden="true"></i> February 5,
-                                                            2018</span> <br>
-                                                        <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> by
-                                                            Chase Franklin</span>
+                    @if ($posts->count() == 0)
+                        <div class="alert alert-danger" role="alert">
+                            Bài viết đang được cập nhật ...
+                        </div>
+                    @else
+                        <div class="category-list">
+                            @foreach ($posts as $post)
+                                <div class="category-item mb-5">
+                                    <div class="row flex-sm-row-reverse">
+                                        <div class="col-sm-10">
+                                            <div class="card">
+                                                <div class="hkt-card-img">
+                                                    <img src="{{ $post->image }}">
+                                                    {{-- car abs --}}
+                                                    <div class="category-img-abs d-flex d-sm-none">
+                                                        <img src="{{ asset('frontend_assets/image/tacgia.jpeg') }}">
+                                                        <p>
+                                                            <span><i class="fa fa-clock-o"
+                                                                    aria-hidden="true"></i>{{ date('F j, Y', strtotime($post->created_at)) }}</span>
+                                                            <br>
+                                                            <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> by
+                                                                Chase Franklin</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="category-item-info mt-3 mb-3">
+                                                        <span class="text-capitalize"><i class="fa fa-tags"
+                                                                aria-hidden="true"></i> {{ $category->name }}</span>
+                                                    </div>
+                                                    <h5 class="card-title"><a
+                                                            href="{{ URL::to($post->slug . '.html') }}">{{ $post->title }}</a>
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        {!! $post->description !!}
                                                     </p>
+                                                    <a href="{{ URL::to($post->slug . '.html') }}" class="btn-hkt">Read
+                                                        more</a>
                                                 </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="category-item-info mt-3 mb-3">
-                                                    <span><i class="fa fa-tags" aria-hidden="true"></i> Nam Khoa </span>
-                                                </div>
-                                                <h5 class="card-title"><a href="">Examination for kids</a></h5>
-                                                <p class="card-text">
-                                                    Interactively procrastinate high-payoff content without
-                                                    backward-compatible data. Quickly cultivate optimal processes and
-                                                    tactical architectures.
-                                                </p>
-                                                <a href="" class="btn-hkt">Read more</a>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="d-none d-sm-block col-sm-2 hkt-card-img2">
-                                        <img class="rounded-circle" src="{{ asset('frontend_assets/image/tacgia.jpeg') }}">
-                                        <p class="mb-0 text-center">
-                                            <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> by
-                                                Chase Franklin</span><br>
-                                            <span><i class="fa fa-clock-o" aria-hidden="true"></i> February 5,
-                                                2018</span>
-                                            
-                                        </p>
+                                        <div class="d-none d-sm-block col-sm-2 hkt-card-img2">
+                                            <img class="rounded-circle"
+                                                src="{{ asset('frontend_assets/image/tacgia.jpeg') }}">
+                                            <p class="mb-0 text-center">
+                                                <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> by
+                                                    Chase Franklin</span><br>
+                                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                    {{ date('F j, Y', strtotime($post->created_at)) }}</span>
+
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endfor
-                    </div>
+                            @endforeach
+                        </div>
+                    @endif
+
                 </div>
                 {{-- ben phai --}}
                 <div class="col-md-3">
                     <div class="category-recent-post">
                         <div class="hkt-style-1">recent posts</div>
-                        @for ($i = 0; $i < 5; $i++)
+                        @foreach ($recent_posts as $recent)
                             <div class="category-recent-post-item">
-                                <a href="">
-                                    <img src="{{ asset('frontend_assets/image/shutterstock_157746134-160x160.jpg') }}">
+                                <a href="{{ URL::to($recent->slug . '.html') }}">
+                                    <img src="{{ $recent->image }}">
                                 </a>
                                 <div>
-                                    <span>OCTOBER 18, 2015</span>
-                                    <a href="">2015 Best USA Hospitals and Clinics</a>
+                                    <span>{{ date('F j, Y', strtotime($recent->created_at)) }}</span>
+                                    <a href="{{ URL::to($recent->slug . '.html') }}">{{ $recent->title }}</a>
                                 </div>
                             </div>
-                        @endfor
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -12,11 +12,11 @@
                 <div class="header-right-main d-flex align-items-center justify-content-between">
                     <div class="header-right d-flex align-items-center">
                         <div class="header-logo">
-                            <a href="">
+                            <a href="{{ URL::to('/') }}">
                                 <img src="{{ asset('frontend_assets/image/logo.png') }}" alt=""></a>
                         </div>
                         <ul class="header-ul d-none d-md-flex align-items-center mb-0">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{{ URL::to('/') }}">Home</a></li>
                             <li class="parent-menu">
                                 <a href="#">Categories</a>
                                 <ul class="submenu">
@@ -25,9 +25,9 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ URL::to('/') }}">About us</a></li>
+                            <li><a href="{{ URL::to('/') }}">Services</a></li>
+                            <li><a href="{{ URL::to('/') }}">Contact</a></li>
                         </ul>
                     </div>
                     <div class="d-none d-lg-block">

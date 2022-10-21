@@ -17,10 +17,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="hkt-style-4">blog</div>
-                    <p>Credibly reintermediate backend ideas for cross-platform models. Continually reintermediate
-                        integrated
-                        processes through technically sound intellectual capital.</p>
+                    <div class="hkt-style-4">{{$parent->name}}</div>
+                    <p>{!!$parent->description!!}</p>
                 </div>
             </div>
         </div>
@@ -35,16 +33,15 @@
                     {{-- breadcrumb --}}
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Library</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Data</li>
+                            <li class="breadcrumb-item"><a href="{{ URL::to('/') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-capitalize" href="{{ URL::to($parent->slug) }}">{{$parent->name}}</a></li>
                         </ol>
                     </nav>
 
                     <div id="post-main">
                         <h1>{{ $post->title }}</h1>
                         <div class="baiviet-top pt-2 pb-2 border-bottom mb-3">
-                            <span><i class="fa fa-clock-o" aria-hidden="true"></i> February 5, 2018</span> /
+                            <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{ date('F j, Y', strtotime($post->created_at)) }}</span> /
                             <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> by Chase Franklin</span>
                         </div>
                         <div id="post-content">
@@ -56,17 +53,19 @@
                 <div class="col-md-3">
                     <div class="category-recent-post">
                         <div class="hkt-style-1">recent posts</div>
-                        @for ($i = 0; $i < 5; $i++)
-                            <div class="category-recent-post-item">
-                                <a href="">
-                                    <img src="{{ asset('frontend_assets/image/shutterstock_157746134-160x160.jpg') }}">
-                                </a>
-                                <div>
-                                    <span>OCTOBER 18, 2015</span>
-                                    <a href="">2015 Best USA Hospitals and Clinics</a>
-                                </div>
+
+                        @foreach ($recent_posts as $recent)
+                        <div class="category-recent-post-item">
+                            <a href="{{ URL::to($recent->slug . '.html') }}">
+                                <img src="{{$recent->image}}">
+                            </a>
+                            <div>
+                                <span>{{ date('F j, Y', strtotime($recent->created_at)) }}</span>
+                                <a href="{{ URL::to($recent->slug . '.html') }}">{{$recent->title}}</a>
                             </div>
-                        @endfor
+                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
