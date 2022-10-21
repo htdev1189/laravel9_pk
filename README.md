@@ -121,6 +121,10 @@ $request->validate([
         return $this->hasMany(Post::class,'category','id');
         //hasMany('table','khoa ngoai tai table huong toi','khoa chinh')
     }
+
+-   Quan he 1 - 1 (sub -> parent)
+    return $this->belongsTo(Category::class,'category','id');
+    //belongsTo(table name, khoa ngoai cua table Sub, khoa chinh )
 ```
 
 > config app.php (update time)
@@ -151,4 +155,16 @@ http://preview.themeforest.net/item/medicare-medical-health-theme/full_screen_pr
 
 - Xu ly content (Khong co HTML)
     {!! $new->content !!}
+
+- Phan trang trong trang loai
+    'posts' => Category::find($category->id)->getPosts()->paginate(1)
+
+- Hien thi phan trang
+    {{ $posts->links() }}
+
+- Neu muon su dung boostrap thi vao file AppServiceProvider
+    use Illuminate\Pagination\Paginator;
+
+    //add this to boot funtion
+    Paginator::useBootstrapFive();
 ```

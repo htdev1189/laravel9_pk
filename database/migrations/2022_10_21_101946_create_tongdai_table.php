@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('tongdai', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('slug');
-            $table->integer('category');
-            $table->string('image')->nullable();
-            $table->text('description')->nullable();
-            $table->text('content');
-            $table->tinyInteger('status')->default(1);//gia tri mac dinh la 1
+            $table->string('number');
+            $table->string('ip');
+            $table->text('note')->nullable();
+            $table->tinyInteger('status')->default(0);//gia tri mac dinh la 1
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('tongdai');
     }
 };

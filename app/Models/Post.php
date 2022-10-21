@@ -13,7 +13,7 @@ class Post extends Model
     // get category (one to one)
     public function getCategory()
     {
-        return $this->hasOne(Category::class,'id','category');
+        return $this->belongsTo(Category::class,'category','id');
     }
 
 }

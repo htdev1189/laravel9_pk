@@ -26,7 +26,7 @@ class frontendController extends Controller
             'recent_posts' => Post::limit(3)->get(),
             'categories' => Category::where('parent',0)->orderByDesc('id')->get(),
             'category' => $category,
-            'posts' => Category::find($category->id)->getPosts
+            'posts' => Category::find($category->id)->getPosts()->paginate(1)
         ]);
     }
     public function post($slug)

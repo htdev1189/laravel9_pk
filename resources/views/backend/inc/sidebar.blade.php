@@ -29,10 +29,19 @@
 
                 {{-- post --}}
                 <li class="nav-item">
-                    <a href="/admin/posts/list" class="nav-link active">
+                    <a href="/admin/posts/list" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Post
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/admin/tongdai/list" class="nav-link">
+                        <i class="nav-icon far fa-image"></i>
+                        <p>
+                            Phone number
                         </p>
                     </a>
                 </li>

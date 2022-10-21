@@ -9,9 +9,10 @@
                         Continually whiteboard superior opportunities via covalent scenarios.</p>
                 </div>
 
-                <form action="" method="post">
+                <form action="/guisdt" method="post">
+                    @csrf
                     <div class="form-group">
-                        <input type="text" required class="form-control" id="sodienthoai" name="sodienthoai" placeholder="Nhap sdt">
+                        <input type="text" required class="form-control" id="sodienthoai" name="sodienthoai" placeholder="Nhap sdt" required>
                       </div>
                       <button type="submit" class="btn-hkt" >send number</button>
                 </form>

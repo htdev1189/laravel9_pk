@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // backend
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SdtController;
 
 // frontend
 use App\Http\Controllers\frontendController;
@@ -25,6 +26,9 @@ use App\Http\Controllers\frontendController;
 Route::get('/',[frontendController::class,'home']);
 Route::get('/{slug}.html',[frontendController::class,'post']);
 Route::get('/{slug}',[frontendController::class,'category']);
+
+// gui sdt
+Route::post('/guisdt',[SdtController::class,'send']);
 
 
 
@@ -70,6 +74,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('edit/{id}',[PostController::class,'edit']);
         Route::post('update',[PostController::class,'update']);
 
+    });
+
+    Route::group(['prefix'=>'tongdai'],function(){
+        Route::get('list',[SdtController::class,'getAll']);
     });
     // Route::group(['prefix'=>'product'],function(){
     //    Route::get('list','ProductController@list');
