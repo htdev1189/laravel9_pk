@@ -54,6 +54,15 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="/admin/thongke/all" class="nav-link">
+                        <i class="nav-icon far fa-image"></i>
+                        <p>
+                            Thống kê
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

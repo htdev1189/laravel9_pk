@@ -273,6 +273,8 @@ class kiemtraLoginGuard
         'phanquyenUser' => \App\Http\Middleware\phanquyenUser::class,
     ];
 
+
+
 - Quan trong
     public function handle(Request $request, Closure $next, ...$roles)
     {
@@ -292,4 +294,44 @@ class kiemtraLoginGuard
     Vi in_array(2,[1]) -> false
     Nen no khong the vao day duoc -- done
     
+```
+
+# Ket noi mot luc voi nhieu database
+
+> Khai bao them thong tin trong file .env
+```
+# khai bao connect thu 2 de thuc hien thong ke
+DB_CONNECTION_DH=mysql
+DB_HOST_DH=127.0.0.1
+DB_PORT_DH=3306
+DB_DATABASE_DH=laravel_dathen
+DB_USERNAME_DH=root
+DB_PASSWORD_DH=
+```
+> Khai bao them 1 connection trong file database.php
+```
+'mysqldh' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL_DH'),
+            'host' => env('DB_HOST_DH', '127.0.0.1'),
+            'port' => env('DB_PORT_DH', '3306'),
+            'database' => env('DB_DATABASE_DH', 'forge'),
+            'username' => env('DB_USERNAME_DH', 'forge'),
+            'password' => env('DB_PASSWORD_DH', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+```
+
+> Thuc hien query voi DB
+```
+return DB::connection('mysqldh')->table('bstv')->get();
 ```

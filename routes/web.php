@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SdtController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DatHenController;
 
 // frontend
 use App\Http\Controllers\frontendController;
@@ -40,12 +41,19 @@ Route::post('/admin/xulyLogin', [AdminController::class,'xulyLogin']);
 
 
 
+
+
 //admin
 // Route::group(['prefix' => 'admin', 'middleware' => 'kiemtraLoginGuard'], function () {
 Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function () {
     // dashboard
     Route::get('dashboard', function () {
         return view('backend/content');
+    });
+
+    // thongke
+    Route::middleware('phanquyenUser:1')->prefix('thongke')->group(function () {
+        Route::get('all', [DatHenController::class, 'index']);
     });
 
     // user
