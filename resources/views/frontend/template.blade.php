@@ -14,6 +14,7 @@
     </div>
     {{-- hktMenu --}}
     @include('frontend.inc.hktMenu')
+    @include('frontend.inc.module1')
 
 </body>
 @yield('script')

@@ -14,7 +14,7 @@
                             <div class="baiviet-top pt-2 pb-2">
                                 {{-- <span><i class="fa fa-clock-o" aria-hidden="true"></i> February 5, 2018</span> / --}}
                                 <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{ date('F j, Y', strtotime($new->created_at)) }}</span> /
-                                <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> by {{ App\Models\Post::find($new->id)->admin->name }}</span>
+                                {{-- <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> by {{ App\Models\Post::find($new->id)->admin->name }}</span> --}}
                             </div>
                             <h5 class="card-title"><a href="{{ URL::to($new->slug . '.html') }}">{{ $new->title }}</a>
                             </h5>
