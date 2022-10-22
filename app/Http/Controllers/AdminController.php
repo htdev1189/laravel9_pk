@@ -143,6 +143,8 @@ class AdminController extends Controller
             //dd("thanh cong");
             // dd($user);
         } else {
+            // tao flash
+            $request->session()->flash('status', 'Check username or password');
             return back();
         }
     }

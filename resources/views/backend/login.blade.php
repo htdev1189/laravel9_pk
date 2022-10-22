@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-body login-card-body">
                 {{-- hien thi loi o day --}}
-                {{-- <p class="login-box-msg">Sign in to start your session</p> --}}
+                <p class="login-box-msg">{{Session::get('status')}}</p>
 
                 <form action="/admin/xulyLogin" method="post">
                     @csrf

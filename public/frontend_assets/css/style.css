@@ -488,3 +488,36 @@ ul.submenu>li>a {
 li.parent-menu:hover .submenu {
     display: block;
 }
+
+/* item hover */
+.baiviet-abs-sub {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: #fff;
+    box-shadow: 0 0 0 1em var(--colorBg) inset;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    transition: all .3s ease;
+    font-weight: 400;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.baiviet-abs:hover .baiviet-abs-sub {
+    font-size: 0;
+    box-shadow: 0 0 0 2px #e10f28 inset;
+    transition: all .3s ease;
+}
+
+.baiviet-abs-sub i {
+    font-size: 13px;
+    transition: all .3s ease;
+}
+.baiviet-abs:hover i {
+    color: var(--colorBg);
+    transition: all .3s ease;
+}

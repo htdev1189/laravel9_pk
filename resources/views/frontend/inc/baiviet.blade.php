@@ -6,7 +6,11 @@
                     <div class="card">
                         <img src="{{ $new->image }}">
                         <div class="card-body">
-                            <div class="baiviet-abs"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                            <div class="baiviet-abs">
+                                <div class="baiviet-abs-sub">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                            </div>
                             <div class="baiviet-top pt-2 pb-2">
                                 {{-- <span><i class="fa fa-clock-o" aria-hidden="true"></i> February 5, 2018</span> / --}}
                                 <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{ date('F j, Y', strtotime($new->created_at)) }}</span> /
