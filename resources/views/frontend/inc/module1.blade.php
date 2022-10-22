@@ -93,7 +93,7 @@
                     hkt = 1;
                     htk = 4;
                 }
-            }, 1000);
+            }, 800);
         });
     }
 
@@ -103,5 +103,5 @@
     setInterval(async () => {
         await asyncCall1(htk);
         // asyncCall2(hkt);
-    }, 3000);
+    }, 7000);
 </script>
