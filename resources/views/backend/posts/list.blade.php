@@ -48,6 +48,7 @@
                                             <th>Image</th>
                                             <th>Category</th>
                                             <th>Status</th>
+                                            <th>Create by</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -59,7 +60,7 @@
                                                 <td>{{ $post->title }}</td>
                                                 <td><img width="100" src="{{ $post->image }}"></td>
                                                 <td>
-                                                    {{ App\Models\Post::find($post->id)->getCategory->name }}
+                                                    {{ App\Models\Post::find($post->id)->category->name }}
                                                 </td>
                                                 <td>
                                                     @if ($post->status == 0)
@@ -68,6 +69,7 @@
                                                         <span class="catagory-active">actived</span>
                                                     @endif
                                                 </td>
+                                                <td>{{ App\Models\Post::find($post->id)->admin->name }}</td>
                                                 <td>
                                                     <a onclick="return confirm('Want to delete?');"
                                                         href="/admin/posts/delete/{{ $post->id }}" class="mr-1"><i

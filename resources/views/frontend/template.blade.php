@@ -6,11 +6,16 @@
 </head>
 
 <body>
-    {{-- header --}}
-    @include('frontend.inc.header')
-    {{-- content --}}
-    @yield('content')
+    <div id="website">
+        {{-- header --}}
+        @include('frontend.inc.header')
+        {{-- content --}}
+        @yield('content')
+    </div>
+    {{-- hktMenu --}}
+    @include('frontend.inc.hktMenu')
 
 </body>
 @yield('script')
+
 </html>

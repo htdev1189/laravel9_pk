@@ -10,6 +10,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable
 // class Admin extends Model
 {
-    protected $table = 'admin';
+    protected $table = 'admins';
     use HasFactory;
 }

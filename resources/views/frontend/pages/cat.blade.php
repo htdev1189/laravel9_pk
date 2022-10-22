@@ -51,7 +51,7 @@
                                                                     aria-hidden="true"></i>{{ date('F j, Y', strtotime($post->created_at)) }}</span>
                                                             <br>
                                                             <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> by
-                                                                Chase Franklin</span>
+                                                                {{ App\Models\Post::find($post->id)->admin->name }}</span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -76,7 +76,7 @@
                                                 src="{{ asset('frontend_assets/image/tacgia.jpeg') }}">
                                             <p class="mb-0 text-center">
                                                 <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> by
-                                                    Chase Franklin</span><br>
+                                                    {{ App\Models\Post::find($post->id)->admin->name }}</span><br>
                                                 <span><i class="fa fa-clock-o" aria-hidden="true"></i>
                                                     {{ date('F j, Y', strtotime($post->created_at)) }}</span>
 

@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
 // rule
 use Illuminate\Validation\Rule;
 
+use Session;
+
 
 class PostController extends Controller
 {
@@ -57,10 +59,11 @@ class PostController extends Controller
         $data = $request->input();
         $post->title = $data['title'];
         $post->slug = Str::of($data['title'])->slug('-');
-        $post->category = $data['category'];
+        $post->category_id = $data['category_id'];
         $post->description = $data['description'];
         $post->image = $data['image'];
         $post->content = $data['content'];
+        $post->admin_id = Session::get('current_user')->id;
         $post->save();
         return redirect('/admin/posts/list');
     }
@@ -105,7 +108,7 @@ class PostController extends Controller
 
         $post->title = $data['title'];
         $post->slug = Str::of($data['title'])->slug('-');
-        $post->category = $data['category'];
+        $post->category_id = $data['category_id'];
         $post->description = $data['description'];
         $post->content = $data['content'];
         $post->image = $data['image'];

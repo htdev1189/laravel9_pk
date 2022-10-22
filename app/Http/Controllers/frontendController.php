@@ -38,7 +38,7 @@ class frontendController extends Controller
         return view('frontend.pages.post',[
             'recent_posts' => Post::Where('id','<>',$post->id)->limit(3)->get(),
             'categories' => Category::where('parent',0)->orderByDesc('id')->get(),
-            'parent' => Post::find($post->id)->getCategory,
+            'parent' => Post::find($post->id)->category,
             'post' =>$post
         ]);
     }

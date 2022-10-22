@@ -72,9 +72,9 @@
 
                                     <div class="form-group">
                                         <label>Category</label>
-                                        <select class="form-control select2" style="width: 100%;" name="category" >
+                                        <select class="form-control select2" style="width: 100%;" name="category_id" >
                                             @foreach ($categories as $cat)
-                                                <option @if ($cat->id == $post->category)
+                                                <option @if ($cat->id == $post->category_id)
                                                     selected
                                                 @endif value="{{ $cat->id }}">{{ $cat->name }}</option>
                                             @endforeach
