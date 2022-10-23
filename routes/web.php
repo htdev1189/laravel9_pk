@@ -54,6 +54,7 @@ Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function () {
     // thongke
     Route::middleware('phanquyenUser:1')->prefix('thongke')->group(function () {
         Route::get('all', [DatHenController::class, 'index']);
+        Route::get('month', [DatHenController::class, 'month_statistical']);
     });
 
     // user

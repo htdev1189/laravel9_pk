@@ -11,18 +11,89 @@ class DatHenController extends Controller
 
     public function index()
     {
+        //Số người đặt hẹn trong tháng này
+        $contact_current_month = DB::connection('mysqldh')->table('dathen')
+        ->selectRaw('
+        count(dathen.ID_DatHen) as total
+        ')
+        ->whereYear('dathen.NgayGioDatHen',2022)
+        ->whereMonth('dathen.NgayGioDatHen',7)
+        ->get();
+
+        // so nguoi lien he va den kham ngay trong tháng đó
+        $contactAndorder_current_month = DB::connection('mysqldh')->table('dathen')
+        ->selectRaw('
+        count(dathen.ID_DatHen) as total
+        ')
+        ->whereYear('dathen.NgayGioDatHen',2022)
+        ->whereMonth('dathen.NgayGioDatHen',7)
+        ->whereYear('dathen.NgayGioDenKham',2022)
+        ->whereMonth('dathen.NgayGioDenKham',7)
+        ->get();
+
+        // so nguoi dat hen va khong den kham trong tháng đó
+        $contactAndNotorder_current_month = DB::connection('mysqldh')->table('dathen')
+        ->selectRaw('
+        count(dathen.ID_DatHen) as total
+        ')
+        ->whereYear('dathen.NgayGioDatHen',2022)
+        ->whereMonth('dathen.NgayGioDatHen',7)
+        ->where('dathen.NgayGioDenKham','not like','2022-07%')
+        ->get();
+
+        // Đặt hẹn tới trong tháng
+        $order_current_month = DB::connection('mysqldh')->table('dathen')
+        ->selectRaw('
+        count(dathen.ID_DatHen) as total
+        ')
+        ->whereYear('dathen.NgayGioDenKham',2022)
+        ->whereMonth('dathen.NgayGioDenKham',7)
+        ->get();
+
+
+        // Đã tới khám trong tháng
+        $came_current_month = DB::connection('mysqldh')->table('dathen')
+        ->selectRaw('
+        count(dathen.ID_DatHen) as total
+        ')
+        ->where([
+            ['dathen.TinhTrang','=','0'],
+            ['dathen.DaDen','=','1'],
+        ])
+        ->whereYear('dathen.NgayGioDenKham',2022)
+        ->whereMonth('dathen.NgayGioDenKham',7)
+        ->get();
+
+        // Hủy tới khám
+        $cancel_current_month = DB::connection('mysqldh')->table('dathen')
+        ->selectRaw('
+        count(dathen.ID_DatHen) as total
+        ')
+        ->where([
+            ['dathen.TinhTrang','<>','0'],
+        ])
+        ->whereYear('dathen.NgayGioDenKham',2022)
+        ->whereMonth('dathen.NgayGioDenKham',7)
+        ->get();
+
+        // Đang tới
+        $comming_current_month = DB::connection('mysqldh')->table('dathen')
+        ->selectRaw('
+        count(dathen.ID_DatHen) as total
+        ')
+        ->where([
+            ['dathen.TinhTrang','=','0'],
+            ['dathen.DaDen','<>','1'],
+        ])
+        ->whereYear('dathen.NgayGioDenKham',2022)
+        ->whereMonth('dathen.NgayGioDenKham',7)
+        ->get();
+
+
         $all_bstv = DB::connection('mysqldh')->table('bstv')->where('status',1)->get();
 
-        // group by idCK
 
-        // SELECT chuyenkhoa.TenCK, COUNT(dathen.ID_DatHen) 
-        // FROM chuyenkhoa
-        // JOIN dathen on dathen.idCK = chuyenkhoa.idCK
-        // WHERE dathen.DaDen = 1 and dathen.TinhTrang = 0 and year(dathen.NgayGioDenKham) = 2022
-        // GROUP BY chuyenkhoa.idCK;
 
-        // lấy thống kê theo năm 2022
-        //tong den kham (tinh trang = 0, daden = 1)
         $tong_denkham_2022 = DB::connection('mysqldh')->table('chuyenkhoa')
         ->selectRaw('
         chuyenkhoa.idCK,
@@ -40,6 +111,24 @@ class DatHenController extends Controller
         // dd($tong_denkham_2022);
 
         return view('backend/thongke/all',[
+            'all_bstv' => $all_bstv,
+            'tong_denkham_2022' => $tong_denkham_2022,
+            'came_current_month' => $came_current_month[0]->total,
+            'order_current_month' => $order_current_month[0]->total,
+            'cancel_current_month' => $cancel_current_month[0]->total,
+            'comming_current_month' => $comming_current_month[0]->total,
+            'contact_current_month' => $contact_current_month[0]->total,
+            'contactAndorder_current_month' => $contactAndorder_current_month[0]->total,
+            'contactAndNotorder_current_month' => $contactAndNotorder_current_month[0]->total,
+            
+        ]);
+    }
+
+
+    // thong ke theo thang
+    public function month_statistical()
+    {
+        return view('backend/thongke/month',[
             'all_bstv' => $all_bstv,
             'tong_denkham_2022' => $tong_denkham_2022
         ]);

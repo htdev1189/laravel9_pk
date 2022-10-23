@@ -36,23 +36,15 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    {{-- thong ke thang hien tai  --}}
-                    <div class="col-lg-4 col-6">
+
+                    <!-- thong ke so bstv -->
+                    <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <p>Tháng @php
-                                    echo 8 . '/' . date('Y');
-                                @endphp</p>
-                                <hr>
-                                <h5>Số người liên hệ Pk để đặt hẹn: {{ $contact_current_month }}</h5>
-                                <h5>Số người dat hen va den kham trong thang: {{ $contactAndorder_current_month }}</h5>
-                                <h5>Số người dat hen va  khong den kham trong thang: {{ $contactAndNotorder_current_month }}</h5>
-                                <hr>
-                                <h5>Đặt hẹn tới trong tháng: {{ $order_current_month }}</h5>
-                                <h5>Hủy: {{ $cancel_current_month }}</h5>
-                                <h5>Tới khám trong tháng: {{ $came_current_month }}</h5>
-                                <h5>Đang tới: {{ $comming_current_month }}</h5>
+                                <h3>{{ $all_bstv->count() }}</h3>
+
+                                <p>Tư vấn viên</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
@@ -192,6 +184,8 @@
                                 }
                                 $tk_multiline = [];
                                 foreach ($tong_denkham_2022 as $key => $value) {
+
+
                                     $tong_denkham_tungthang = DB::connection('mysqldh')
                                         ->table('dathen')
                                         ->selectRaw('count(ID_DatHen) as tong, MONTH(NgayGioDenKham) month')
