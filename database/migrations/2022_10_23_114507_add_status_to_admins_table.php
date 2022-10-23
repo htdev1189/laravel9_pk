@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('admins', function (Blueprint $table) {
-            $table->string('image')->nullable();
+            $table->tinyInteger('status')->default(1);
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('admins', function (Blueprint $table) {
-            $table->dropColumn('image');
+            $table->dropColumn('status');
         });
     }
 };

@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
+    protected $connection = 'mysqldh';
     /**
      * Run the migrations.
      *
@@ -13,8 +15,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->string('image')->nullable();
+        Schema::table('bstv', function (Blueprint $table) {
+            $table->tinyInteger('status')->default(1);
         });
     }
 
@@ -25,8 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->dropColumn('image');
+        Schema::table('bstv', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 };

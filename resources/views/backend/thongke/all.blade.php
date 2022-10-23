@@ -123,7 +123,13 @@
                                         var config = {
                                             type: 'line',
                                             data: data,
-                                            options: {}
+                                            options: {
+                                                // scales: {
+                                                //     y: {
+                                                //         beginAtZero: true
+                                                //     }
+                                                // }
+                                            }
                                         };
 
 
@@ -141,6 +147,109 @@
                     @endforeach
 
 
+                    // chart multiline
+
+                    <div class="card card-info w-100 mb-5">
+                        <div class="card-header">
+                            <h3 class="card-title">multiline</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="chart">
+                                <canvas id="myChart-multiLine" height="100px"></canvas>
+                            </div>
+                        </div>
+
+                        <script>
+                            @php
+                                $tong_denkham_theoThang = DB::connection('mysqldh')
+                                    ->table('dathen')
+                                    ->selectRaw('count(ID_DatHen) as tong, MONTH(NgayGioDenKham) month')
+                                    ->where([['TinhTrang', '=', '0'], ['DaDen', '=', '1'], ['idCK', '=', '1']])
+                                    ->whereYear('NgayGioDenKham', '2022')
+                                    ->groupBy('month')
+                                    ->get();
+                                $label = [];
+                                foreach ($tong_denkham_theoThang as $value) {
+                                    array_push($label, 'Tháng ' . $value->month);
+                                }
+                                $tk_multiline = [];
+                                foreach ($tong_denkham_2022 as $key => $value) {
+
+
+                                    $tong_denkham_tungthang = DB::connection('mysqldh')
+                                        ->table('dathen')
+                                        ->selectRaw('count(ID_DatHen) as tong, MONTH(NgayGioDenKham) month')
+                                        ->where([['TinhTrang', '=', '0'], ['DaDen', '=', '1'], ['idCK', '=', $value->idCK]])
+                                        ->whereYear('NgayGioDenKham', '2022')
+                                        ->groupBy('month')
+                                        ->get();
+                                
+                                    $data = [];
+                                    foreach ($tong_denkham_tungthang as $v1) {
+                                        array_push($data, $v1->tong);
+                                    }
+                                
+                                    $tk_multiline[$key]['label'] = $value->TenCK;
+                                    $tk_multiline[$key]['data'] = $data;
+                                    $tk_multiline[$key]['borderColor'] = 'rgb(255, 99, 132)';
+                                    $tk_multiline[$key]['backgroundColor'] = 'rgb(255, 99, 132)';
+                                    $tk_multiline[$key]['yAxisID'] = 'y';
+                                }
+                            @endphp
+
+                            var labels = <?php echo json_encode($label); ?>;
+                            var data = {
+                                labels: labels,
+                                datasets: <?php echo json_encode($tk_multiline); ?>
+                            };
+
+                            var config = {
+                                type: 'line',
+                                data: data,
+                                options: {
+                                    responsive: true,
+                                    interaction: {
+                                        mode: 'index',
+                                        intersect: false,
+                                    },
+                                    stacked: false,
+                                    plugins: {
+                                        title: {
+                                            display: true,
+                                            text: 'Chart.js Line Chart - Multi Axis'
+                                        }
+                                    },
+                                    scales: {
+                                        y: {
+                                            type: 'linear',
+                                            display: true,
+                                            position: 'left',
+                                        },
+                                    }
+                                },
+                            };
+
+                            var myChart = new Chart(
+                                document.getElementById('myChart-multiLine'),
+                                config
+                            );
+                        </script>
+
+                    </div>
+
+
+
+
 
                 </div>
                 <!-- /.row (main row) -->
@@ -156,7 +265,7 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('admin_assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
-    {{-- <script src="{{ asset('admin_assets/plugins/chart.js/Chart.min.js') }}"></script> --}}
+    // {{-- <script src="{{ asset('admin_assets/plugins/chart.js/Chart.min.js') }}"></script> --}}
 
 
     <!-- AdminLTE App -->
