@@ -63,6 +63,16 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="/admin/thongbao/add" class="nav-link">
+                        <i class="nav-icon far fa-image"></i>
+                        <p>
+                            Thông báo
+                        </p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

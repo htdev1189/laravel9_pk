@@ -389,8 +389,12 @@ php artisan optimize:clear
 ```
 
 ```
-link https://www.youtube.com/watch?v=Mb78fc_5Jog
+- link https://www.youtube.com/watch?v=Mb78fc_5Jog
     Tao even
         php artisan make:event NoticeEvent
+    neu bo loi ssl thi download file perm ve, them duong dan trong file php.ini
 
+    - goi ra
+    event(new NoticeEvent('hello world'));
 ```
+

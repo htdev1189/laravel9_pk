@@ -9,6 +9,7 @@ use App\Http\Controllers\SdtController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DatHenController;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\ThongbaoController;
 
 // frontend
 use App\Http\Controllers\frontendController;
@@ -59,6 +60,11 @@ Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function () {
     Route::middleware('phanquyenUser:1')->prefix('thongke')->group(function () {
         Route::get('all', [DatHenController::class, 'index']);
         Route::get('month', [DatHenController::class, 'month_statistical']);
+    });
+
+    Route::middleware('phanquyenUser:1')->prefix('thongbao')->group(function () {
+        Route::get('add', [ThongbaoController::class, 'add']);
+        Route::post('save', [ThongbaoController::class, 'store']);
     });
 
     // user
