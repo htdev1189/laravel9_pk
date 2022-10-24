@@ -335,3 +335,13 @@ DB_PASSWORD_DH=
 ```
 return DB::connection('mysqldh')->table('bstv')->get();
 ```
+
+# AJAX
+
+
+# Thong ke
+
+> Convert colection to array javascript
+```
+    data: <?php echo json_encode($colection); ?>,
+```

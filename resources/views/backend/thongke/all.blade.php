@@ -47,7 +47,8 @@
                                 <hr>
                                 <h5>Số người liên hệ Pk để đặt hẹn: {{ $contact_current_month }}</h5>
                                 <h5>Số người dat hen va den kham trong thang: {{ $contactAndorder_current_month }}</h5>
-                                <h5>Số người dat hen va  khong den kham trong thang: {{ $contactAndNotorder_current_month }}</h5>
+                                <h5>Số người dat hen va khong den kham trong thang: {{ $contactAndNotorder_current_month }}
+                                </h5>
                                 <hr>
                                 <h5>Đặt hẹn tới trong tháng: {{ $order_current_month }}</h5>
                                 <h5>Hủy: {{ $cancel_current_month }}</h5>
@@ -57,13 +58,10 @@
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i
+                            <a href="/admin/thongke/month" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-
-
-
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
@@ -96,7 +94,6 @@
                                             ->whereYear('NgayGioDenKham', '2022')
                                             ->groupBy('month')
                                             ->get();
-                                        // dd($tong_denkham_theoThang);
                                         $label = [];
                                         $data = [];
                                         foreach ($tong_denkham_theoThang as $value) {
@@ -107,17 +104,6 @@
                                     @endphp
                                     <script>
                                         var labels = <?php echo json_encode($label); ?>;
-                                        // var labels = [
-                                        //     'January',
-                                        //     'February',
-                                        //     'March',
-                                        //     'April',
-                                        //     'May',
-                                        //     'June',
-                                        // ];
-
-
-
                                         var data = {
                                             labels: labels,
                                             datasets: [{
@@ -132,11 +118,7 @@
                                             type: 'line',
                                             data: data,
                                             options: {
-                                                // scales: {
-                                                //     y: {
-                                                //         beginAtZero: true
-                                                //     }
-                                                // }
+
                                             }
                                         };
 
@@ -250,13 +232,7 @@
                                 config
                             );
                         </script>
-
                     </div>
-
-
-
-
-
                 </div>
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
@@ -265,15 +241,10 @@
     </div>
 @endsection
 
-
 @section('script')
     <script src="{{ asset('admin_assets/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('admin_assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- ChartJS -->
-    // {{-- <script src="{{ asset('admin_assets/plugins/chart.js/Chart.min.js') }}"></script> --}}
-
-
     <!-- AdminLTE App -->
     <script src="{{ asset('admin_assets/dist/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->

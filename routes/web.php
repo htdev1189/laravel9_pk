@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SdtController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DatHenController;
+use App\Http\Controllers\AjaxController;
 
 // frontend
 use App\Http\Controllers\frontendController;
@@ -39,6 +40,9 @@ Route::get('/admin/logout', [AdminController::class,'logout']);
 // xu ly login
 Route::post('/admin/xulyLogin', [AdminController::class,'xulyLogin']);
 
+// ajax
+Route::post('ajax/thongke_range_date',[AjaxController::class,'thongke_range_date']);
+Route::post('ajax/thongke_range_date_loaibenh',[AjaxController::class,'thongke_range_date_loaibenh']);
 
 
 

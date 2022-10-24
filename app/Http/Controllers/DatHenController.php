@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
+use Termwind\Components\Dd;
 
 class DatHenController extends Controller
 {
@@ -128,9 +129,37 @@ class DatHenController extends Controller
     // thong ke theo thang
     public function month_statistical()
     {
+        $benhthucte_groupBy = DB::connection('mysqldh')->table('dathen')
+        ->selectRaw('
+        BenhThucTe,
+        count(dathen.ID_DatHen) as tong
+        ')
+        ->where([
+            ['dathen.TinhTrang','=','0'],
+            ['dathen.DaDen','=','1']
+        ])
+        ->whereYear('dathen.NgayGioDenKham','2022')
+        ->whereMonth('dathen.NgayGioDenKham','7')
+        ->groupBy('dathen.BenhThucTe')
+        ->get();
+
+        $loaibenh_groupBy = DB::connection('mysqldh')->table('dathen')
+        ->selectRaw('
+        LoaiBenh,
+        count(dathen.ID_DatHen) as tong
+        ')
+        ->where([
+            ['dathen.TinhTrang','=','0'],
+            ['dathen.DaDen','=','1']
+        ])
+        ->whereYear('dathen.NgayGioDenKham','2022')
+        ->whereMonth('dathen.NgayGioDenKham','7')
+        ->groupBy('dathen.LoaiBenh')
+        ->get();
+
         return view('backend/thongke/month',[
-            'all_bstv' => $all_bstv,
-            'tong_denkham_2022' => $tong_denkham_2022
+            'benhthucte_groupBy' =>$benhthucte_groupBy,
+            'loaibenh_groupBy' =>$loaibenh_groupBy
         ]);
     }
 }
