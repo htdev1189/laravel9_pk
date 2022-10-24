@@ -345,3 +345,52 @@ return DB::connection('mysqldh')->table('bstv')->get();
 ```
     data: <?php echo json_encode($colection); ?>,
 ```
+
+
+# Puhser
+
+> paste code vao daon nao muon nhan notify
+```
+- o day gan vao template backend
+
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('2b2bd1717f2e1aa0a6e9', {
+      cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
+```
+
+> cai dat thong qua composer
+```
+composer require pusher/pusher-php-server
+```
+
+> Thiet lap thong so trong file .env
+```
+PUSHER_APP_ID=1496255
+PUSHER_APP_KEY=2b2bd1717f2e1aa0a6e9
+PUSHER_APP_SECRET=3c00ece0064f6b826147
+PUSHER_APP_CLUSTER=ap2
+```
+
+> Clear catche
+```
+php artisan optimize:clear
+```
+
+```
+link https://www.youtube.com/watch?v=Mb78fc_5Jog
+    Tao even
+        php artisan make:event NoticeEvent
+
+```
