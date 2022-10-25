@@ -13,6 +13,9 @@ use App\Http\Controllers\ThongbaoController;
 
 // frontend
 use App\Http\Controllers\frontendController;
+
+// backend
+use App\Http\Controllers\backendController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -61,9 +64,7 @@ Route::post('ajax/thongke_range_date_loaibenh',[AjaxController::class,'thongke_r
 // Route::group(['prefix' => 'admin', 'middleware' => 'kiemtraLoginGuard'], function () {
 Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function () {
     // dashboard
-    Route::get('dashboard', function () {
-        return view('backend/content');
-    });
+    Route::get('dashboard',[backendController::class,'index']);
 
     // thongke
     Route::middleware('phanquyenUser:1')->prefix('thongke')->group(function () {

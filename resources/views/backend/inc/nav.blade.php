@@ -15,11 +15,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>
-                    <span class="badge badge-warning navbar-badge">{{ $notice_not_seen->count() }}</span>
+                    <span class="badge badge-warning navbar-badge">11</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             
-                    @foreach ($notice_not_seen as $item)
+                    {{-- @foreach ($notice_not_seen as $item) --}}
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
@@ -37,7 +37,7 @@
                             <!-- Message End -->
                         </a>
                         <div class="dropdown-divider"></div>
-                    @endforeach
+                    {{-- @endforeach --}}
             
                     <a href="/admin/thongbao/all" class="dropdown-item dropdown-footer">See All Messages</a>
                 </div>
