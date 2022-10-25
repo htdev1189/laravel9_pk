@@ -417,5 +417,12 @@ php artisan optimize:clear
         to => colums
         -> => keys
     )
+
+-   Vấn đề về hiển thị thông báo
+    Vì nó nằm ở nav, mà nav mày lại include vào thằng template, 
+    Nên ở đây sử dụng thằng View::share (su dung thoai mai cho tat ca cac view -- mien sao dat ten ok la dc)
 ```
+
+
+
 
