@@ -65,7 +65,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/thongbao/add" class="nav-link">
+                    <a href="/admin/thongbao/all" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Thông báo

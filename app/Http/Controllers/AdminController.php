@@ -83,18 +83,18 @@ class AdminController extends Controller
         $request->validate([
             'username' => [
                 'required',
-                Rule::unique('admin', 'username')->ignore($data['id']),
+                Rule::unique('admins', 'username')->ignore($data['id']),
             ],
             'email' => [
                 'required',
-                Rule::unique('admin', 'email')->ignore($data['id']),
+                Rule::unique('admins', 'email')->ignore($data['id']),
             ],
             'password' => 'required|min:6',
             'image' => 'required',
             'name' => 'required'
         ], []);
         # code...
-
+        
         $admin = Admin::find($data['id']);
 
         $admin->name = $data['name'];

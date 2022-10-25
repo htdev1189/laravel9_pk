@@ -13,6 +13,7 @@ use App\Http\Controllers\ThongbaoController;
 
 // frontend
 use App\Http\Controllers\frontendController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,14 @@ use App\Http\Controllers\frontendController;
 |
 */
 
+
+// test
+Route::get('test',function(){
+    $users = DB::table('thongbaos')
+                ->whereJsonContains('to', 4)
+                ->get();
+                return $users;
+});
 // frontend
 
 Route::get('/', [frontendController::class, 'home']);
@@ -62,9 +71,12 @@ Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function () {
         Route::get('month', [DatHenController::class, 'month_statistical']);
     });
 
-    Route::middleware('phanquyenUser:1')->prefix('thongbao')->group(function () {
-        Route::get('add', [ThongbaoController::class, 'add']);
-        Route::post('save', [ThongbaoController::class, 'store']);
+    Route::middleware('phanquyenUser:1,2,3')->prefix('thongbao')->group(function () {
+        Route::get('all', [ThongbaoController::class, 'index']);
+        Route::post('ajax', [ThongbaoController::class, 'ajax']);
+        Route::post('push', [ThongbaoController::class, 'push']);
+        Route::get('add', [ThongbaoController::class, 'add'])->middleware('phanquyenUser:1');
+        Route::post('save', [ThongbaoController::class, 'store'])->middleware('phanquyenUser:1');
     });
 
     // user

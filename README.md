@@ -389,12 +389,33 @@ php artisan optimize:clear
 ```
 
 ```
-- link https://www.youtube.com/watch?v=Mb78fc_5Jog
-    Tao even
-        php artisan make:event NoticeEvent
-    neu bo loi ssl thi download file perm ve, them duong dan trong file php.ini
+-   link https://www.youtube.com/watch?v=Mb78fc_5Jog
 
-    - goi ra
+-   Tao even
+    php artisan make:event NoticeEvent
+
+-   neu bo loi ssl thi download file perm ve, them duong dan trong file php.ini
+
+-   goi ra
     event(new NoticeEvent('hello world'));
+
+-   Kiem tra json bang query database
+    $users = DB::table('users')
+        ->whereJsonContains('options->languages', 'en')
+        ->get();
+        
+-   json_encode => convert array to json
+-   json_decode => convert json to array
+
+-   Luu y 
+    (trong khi su dung Ajax thi chi nen return thui -- khong nen dd )
+-   Kiem tra key json co ton tai khong
+
+    $allNotice =  DB::table('thongbaos')
+    ->where('to->'.Session::get('current_user')->id,'!=',null)
+    (
+        to => colums
+        -> => keys
+    )
 ```
 

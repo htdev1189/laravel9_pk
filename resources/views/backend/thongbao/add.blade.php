@@ -60,16 +60,27 @@
                             <form method="post" action="/admin/thongbao/save">
                                 @csrf
                                 <div class="card-body">
-
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Tiêu đề</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" name="title"
                                             placeholder="Enter name">
                                     </div>
 
+                                    <input type="hidden" name="admin_id" value="{{ Session::get('current_user')->id }}">
+
                                     <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea class="form-control" name="description" id="description" rows="10" placeholder="Enter ..."></textarea>
+                                        <label>To</label>
+                                        <select class="select2" multiple="multiple" data-placeholder="Select a State"
+                                            style="width: 100%;" name="to[]">
+                                            @foreach ($allAdmin as $admin)
+                                                <option value="{{ $admin->id }}">{{ $admin->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Content</label>
+                                        <textarea class="form-control" name="content" id="description" rows="10" placeholder="Enter ..."></textarea>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
@@ -124,24 +135,4 @@
             });
     </script>
 
-    <script>
-        let open_ckfinder = document.getElementById('open_ckfinder');
-        open_ckfinder.addEventListener('click', function() {
-            CKFinder.popup({
-                chooseFiles: true,
-                width: 800,
-                height: 600,
-                onInit: function(finder) {
-                    //event choise file
-                    finder.on('files:choose', function(evt) {
-                        var file = evt.data.files.first();
-                        var output = document.getElementById('image');
-                        output.value = file.getUrl();
-                        var thumbnail = document.getElementById('Thumbnail');
-                        thumbnail.setAttribute('src', file.getUrl());
-                    });
-                }
-            });
-        });
-    </script>
 @endsection

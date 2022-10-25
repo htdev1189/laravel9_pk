@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Dashboard</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- jQuery -->
+    <script src="{{ asset('admin_assets/plugins/jquery/jquery.min.js') }}"></script>
+
+
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
     <script>
@@ -15,8 +20,6 @@
         var pusher = new Pusher('2b2bd1717f2e1aa0a6e9', {
             cluster: 'ap2'
         });
-
-        
     </script>
 
 
@@ -55,6 +58,8 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+
+
 
 
     @yield('script')

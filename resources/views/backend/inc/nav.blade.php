@@ -4,48 +4,83 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
-        </li>
+
     </ul>
 
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-bell"></i>
-                <div id="hkt_push"></div>
-                <script>
-                    var channel = pusher.subscribe('my-channel');
-                    channel.bind('my-event', function(data) {
-                      document.getElementById('hkt_push').innerHTML = '<span class="badge badge-warning navbar-badge">1</span>';
-                        // alert(JSON.stringify(data));
-                    });
-                </script>
-                {{-- <span class="badge badge-warning navbar-badge">15</span> --}}
+
+        <!-- Messages Dropdown Menu -->
+        <div id="hkt_push">
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">{{ $notice_not_seen->count() }}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            
+                    @foreach ($notice_not_seen as $item)
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="{{ asset('admin_assets/dist/img/user1-128x128.jpg') }}" alt="User Avatar"
+                                    class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Brad Diesel
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">Call me whenever you can...</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    @endforeach
+            
+                    <a href="/admin/thongbao/all" class="dropdown-item dropdown-footer">See All Messages</a>
+                </div>
+            </li>
+
+            
+            
+        </div>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/logout">
+                <i class="fas fa-sign-out-alt"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="/admin/logout" class="dropdown-item dropdown-footer">LogOut</a>
-            </div>
         </li>
     </ul>
 </nav>
+
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+
+            $.ajax({
+                    url: '/admin/thongbao/push',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        id: 10
+                    },
+                    success: function(response) {
+                        // console.log(response);
+                        document.getElementById('hkt_push').innerHTML = response.noidung;
+                    }
+                });
+            // alert(JSON.stringify(data));
+        });
+    });
+</script>
