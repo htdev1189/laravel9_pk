@@ -73,6 +73,16 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="/admin/email/write
+                    " class="nav-link">
+                        <i class="nav-icon far fa-image"></i>
+                        <p>
+                            Gửi mail
+                        </p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

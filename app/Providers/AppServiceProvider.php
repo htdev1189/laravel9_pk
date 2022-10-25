@@ -40,15 +40,9 @@ class AppServiceProvider extends ServiceProvider
 
 
         view()->composer('*', function ($view) {
-            $view->with('thongbaochuadoc', DB::table('thongbaos')->where('to->'. \Session::get('current_user')->id,'!=',1 )->get());
-            // $view->with('your_var', \Session::get('var') );
+            if (\Session::has('current_user')) {
+                $view->with('thongbaochuadoc', DB::table('thongbaos')->where('to->'. \Session::get('current_user')->id, '!=', 1)->get());
+            }
         });
-
-        // // su dung de truyen thong bao chua doc, de them vao include nav
-        // $xxx = Session::get('current_user')->id;
-        // // $notice_not_seen = DB::table('thongbaos')
-        // //     ->where('to->'.Session::get('current_user')->id, '!=', 1)
-        // //     ->get();
-        // View::share('thongbaochuadoc', $xxx);
     }
 }

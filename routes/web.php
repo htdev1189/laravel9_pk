@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DatHenController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ThongbaoController;
+use App\Http\Controllers\emailController;
 
 // frontend
 use App\Http\Controllers\frontendController;
@@ -65,6 +66,12 @@ Route::post('ajax/thongke_range_date_loaibenh',[AjaxController::class,'thongke_r
 Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function () {
     // dashboard
     Route::get('dashboard',[backendController::class,'index']);
+
+    //Send email
+    Route::middleware('phanquyenUser:1')->prefix('email')->group(function(){
+        Route::get('write',[emailController::class,'write']);
+        Route::post('send',[emailController::class,'send']);
+    });
 
     // thongke
     Route::middleware('phanquyenUser:1')->prefix('thongke')->group(function () {

@@ -423,6 +423,34 @@ php artisan optimize:clear
     Nên ở đây sử dụng thằng View::share (su dung thoai mai cho tat ca cac view -- mien sao dat ten ok la dc)
 ```
 
+# Send Mail SMTP
+
+```
+-   Thiet lap thong so trong env
+
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.gmail.com
+    MAIL_PORT=587
+    MAIL_USERNAME=email gui
+    MAIL_PASSWORD= pass app tao tu google
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS="email dung de gui"
+
+-   php artisan make:mail hktMail
+
+-   public function content()
+    {
+        return new Content(
+            view: 'backend.mail.content',
+            <!-- ham nay se lay noi dung view, sau do render ra, add vo noi dung Mai dc gui di -->
+        );
+    }
+
+-   Neu muon truyen dat noi dung tu form, thi phai khai vao va khoi tao 1 bien trong hktMail.php
+    Sau do trong phan content truyen tham so vao
+    Tu ben view hien thi tham so ra
+```
+
 
 
 
