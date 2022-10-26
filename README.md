@@ -449,8 +449,26 @@ php artisan optimize:clear
 -   Neu muon truyen dat noi dung tu form, thi phai khai vao va khoi tao 1 bien trong hktMail.php
     Sau do trong phan content truyen tham so vao
     Tu ben view hien thi tham so ra
+
+
+-   Mot so loi xuat hien
+
+    error:1416F086:SSL routines:tls_process_server_certificate:certificate verify failed laravel version 9
+
+-   Cach giai quyet
+
+    Trong file .env 
+        MAIL_ENCRYPTION=null
+    Trong file config\mail.php
+        'smtp' => [
+            ...
+            'auth_mode'  => null,
+            'verify_peer'       => false,
+        ],
+
+-   Kiem tra su ton tai session trong blade
+
+    @if(Session::has('sessionName')) 
+	    {{Session::get('sessionName')}}
+    @endif
 ```
-
-
-
-

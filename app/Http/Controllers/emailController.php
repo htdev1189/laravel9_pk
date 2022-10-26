@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 // email
 use Illuminate\Support\Facades\Mail;
-use App\Mail\hktMail;
+use App\Mail\hkt2Mail;
 
 class emailController extends Controller
 {
@@ -34,6 +34,9 @@ class emailController extends Controller
         // Mail::to($data['to'])->send(new hktMail());
 
         // thay doi content theo y minh
-        Mail::to($data['to'])->send(new hktMail($data['title'],$data['content']));
+        Mail::to($data['to'])->send(new hkt2Mail($data['title'],$data['content']));
+
+        $request->session()->flash('status', 'Send mail to '.$data['to']. ' success');
+        return redirect('/admin/dashboard');
     }
 }
