@@ -19,7 +19,11 @@ class ApiPhoneController extends Controller
 
         $tongdai = new TongDai();
         $tongdai->number = $request->number;
-        $tongdai->ip = $request->ip();
+        if($request->ip){
+            $tongdai->ip = $request->ip;
+        } else{
+            $tongdai->ip = $request->ip();
+        }
         if ($tongdai->save()) {
             return ['status' => 'ok'];
         } else {
