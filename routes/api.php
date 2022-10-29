@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiPhoneController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,16 @@ use App\Http\Controllers\ApiPhoneController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::middleware('auth:sanctum')->prefix('phone')->group(function () {
+    Route::get('list',[ApiPhoneController::class,'list']);
+    Route::post('add',[ApiPhoneController::class,'store']);
 });
 
-// phone
-Route::get('phone/list',[ApiPhoneController::class,'list']);
-Route::post('phone/add',[ApiPhoneController::class,'store']);
+// get token
+Route::post('getToken',[AdminController::class,'authenticate']);
+
 

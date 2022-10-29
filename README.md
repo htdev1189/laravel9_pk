@@ -472,3 +472,51 @@ php artisan optimize:clear
 	    {{Session::get('sessionName')}}
     @endif
 ```
+
+# Xác thực khi sử dụng API 
+
+> Thiết lập Sanctum
+```
+    composer require laravel/sanctum
+    php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+    
+    chỉnh sửa file Kernel.php
+    
+    'api' => [
+        \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        'throttle:api',
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    ],
+    
+    // Them nay vao model dang su dung cho viec login
+    use HasApiTokens, HasFactory, Notifiable;
+```
+
+> Tiến trình
+```
+    //Khi người dùng muốn sử dụng API thì phải thông qua xác thực (Bear)
+    // Nên trước khi truy cập API, cần phải login để lấy Token trước
+    // Sau đó gửi token này lên header (Bearer token) 
+    
+    -- viết hàm login sau đó trả ra gia trị token Bearer
+    -- Khai báo route trong file api.php
+    -- Group những route nào cần đăng nhập
+    
+        Route::middleware('auth:sanctum')->prefix('phone')->group(function () {
+            Route::get('list',[ApiPhoneController::class,'list']);
+        });
+    
+giả sử đường dẫn API lúc này là http://laravel.htdev/api/phone/list
+Tuy nhiên trước đó mình phải get token từ link http://laravel.htdev/api/getToken
+Sau đó lấy giá trị token ra
+truy cập vào link API lấy list phone
+trên phần header truyền vào giá trị
+
+Authorization : Giá trị token được tạo ra
+
+Vậy là bài toán gửi số điện thoại đơn giản sẽ là liên tục gửi 2 cái API, 
+lần đầu để lấy token, lần sau thì mới insert vào database
+
+
+  
+```

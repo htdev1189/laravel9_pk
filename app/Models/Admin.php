@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Laravel\Sanctum\HasApiTokens;
+
 class Admin extends Authenticatable
 // class Admin extends Model
 {
     protected $table = 'admins';
-    use HasFactory;
+    // use HasFactory;
+    // HasApi => truoc khi truy cap duoc can phai xac thuc
+    use HasApiTokens, HasFactory;
 }

@@ -94,7 +94,7 @@ class AdminController extends Controller
             'name' => 'required'
         ], []);
         # code...
-        
+
         $admin = Admin::find($data['id']);
 
         $admin->name = $data['name'];
@@ -138,7 +138,7 @@ class AdminController extends Controller
             //info user current
             $current_user = Auth::guard('admin')->user();
             //put to session
-            $request->session()->put('current_user',$current_user);
+            $request->session()->put('current_user', $current_user);
             return redirect('/admin/dashboard');
             //dd("thanh cong");
             // dd($user);
@@ -146,6 +146,22 @@ class AdminController extends Controller
             // tao flash
             $request->session()->flash('status', 'Check username or password');
             return back();
+        }
+    }
+
+    // login api 
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            // lay token
+            $current_user = Auth::guard('admin')->user();
+            $token = $current_user->createToken("token");
+            return ['token',$token->plainTextToken];
         }
     }
 }
