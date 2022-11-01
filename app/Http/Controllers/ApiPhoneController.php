@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tokenAPI;
 use Illuminate\Http\Request;
 use App\Models\TongDai;
 
@@ -13,9 +14,27 @@ class ApiPhoneController extends Controller
     }
     function store(Request $request)
     {
+        $token = "";
+        $headers = $request->header('Authorization');
+        if (!empty($headers)) {
+            if (preg_match('/Bearer\s(\S+)/', $headers, $matches)) {
+                $token = $matches[1];
+            }
+        }
 
-        //su dung www-form // form data
-        // return $request->number;
+        if ($token==''){
+            return [
+                'status' => 0,
+                'message' => 'Token not found'
+            ];
+        }
+
+        if(tokenAPI::where('token','like', "%$token%")->count() == 0){
+            return [
+                'status' => 0,
+                'message' => 'Token not match'
+            ];
+        }
 
         $tongdai = new TongDai();
 
