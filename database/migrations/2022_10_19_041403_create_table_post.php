@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('content');
             $table->tinyInteger('status')->default(1);//gia tri mac dinh la 1
+            $table->integer('admin_id');
             $table->timestamps();
         });
     }

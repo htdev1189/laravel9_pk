@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->tinyInteger('status')->default(1);
+        Schema::create('tokenAPI', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('token');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->dropColumn('status');
-        });
+        Schema::dropIfExists('tokenAPI');
     }
 };

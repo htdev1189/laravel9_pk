@@ -11,6 +11,7 @@ use App\Http\Controllers\DatHenController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ThongbaoController;
 use App\Http\Controllers\emailController;
+use App\Http\Controllers\tokenApiController;
 
 // frontend
 use App\Http\Controllers\frontendController;
@@ -67,6 +68,11 @@ Route::middleware('kiemtraLoginGuard')->prefix('admin')->group(function () {
     // dashboard
     Route::get('dashboard',[backendController::class,'index']);
 
+    /**token api*/
+    Route::middleware('phanquyenUser:1')->prefix('tokenAPI')->group(function (){
+        Route::get('show',[tokenApiController::class,'show']);
+        Route::post('make',[tokenApiController::class,'make']);
+    });
     //Send email
     Route::middleware('phanquyenUser:1')->prefix('email')->group(function(){
         Route::get('write',[emailController::class,'write']);

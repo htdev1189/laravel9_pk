@@ -516,7 +516,22 @@ Authorization : Giá trị token được tạo ra
 
 Vậy là bài toán gửi số điện thoại đơn giản sẽ là liên tục gửi 2 cái API, 
 lần đầu để lấy token, lần sau thì mới insert vào database
-
-
   
 ```
+
+#### Vấn đề gặp phải
+
+- Mỗi muốn gửi sdt thì phải 1 lần lấy token
+- Mỗi lần lấy token là lấy cả thông tin đăng nhập
+
+#### Phương hướng giải quyết
+
+- Tạo hẳn 1 route quản lý token trong phần admin 
+- Lưu token này vào database
+- Mỗi lần có người muốn thêm sdt thông qua API thì chỉ cần gửi token này
+- Có 3 trường hợp xảy ra
+    - token người gửi không trùng với token trong database (thong báo lỗi)
+    - token người gửi trùng nhưng hết hạn (Lỗi)
+    - còn lại thì ok
+
+

@@ -17,6 +17,7 @@ class kiemtraLoginGuard
      */
     public function handle(Request $request, Closure $next)
     {
+//        echo 1;exit();
         if(!Auth::guard('admin')->check())
         {
             return redirect('/admin/login');
